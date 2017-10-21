@@ -39,3 +39,4 @@ target/*
 .settings/*
 /target
 /target/
+src/test/*
