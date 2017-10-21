@@ -1,4 +1,4 @@
-# DeviantArt Java Client
+# Unsplash Java Client
 
 A strongly-typed Java client for https://unsplash.com website.
 
