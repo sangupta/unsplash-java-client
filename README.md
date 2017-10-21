@@ -1,22 +1,16 @@
 # DeviantArt Java Client
 
-A strongly-typed Java client for https://deviantart.com website.
+A strongly-typed Java client for https://unsplash.com website.
 
 ## Usage
 
 ```java
 public static void main(String[] args) {
-  DeviantArtClient client = new DeviantArtClient();
+  UnsplashClient client = new UnsplashClient("your-client-id");
   client.setHttpService(new DefaultHttpServiceImpl());
 
-  List<DeviantArtImage> images = client.getImages(
-  	DeviantArtCategory.DigitalArt,   // in the digital art section 
-  	DeviantArtBoost.Popular,         // that are most popular
-  	DeviantArtSort.Time,             // sort by newest first
-  	DeviantArtType.Deviation,        // all deviations
-  	null);
-  
-  System.out.println(images.size());
+  UnsplashImage[] images = client.getPhotos(1, 100, UnsplashSort.Latest);
+  System.out.println("Found images: " + images.length);
 }
 ```
 
