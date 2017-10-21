@@ -66,8 +66,37 @@ public class UnsplashClient {
 		return getJSON(url, UnsplashImage[].class);
 	}
 	
+	/**
+	 * Get details of a given photo.
+	 * 
+	 * @param photoID
+	 * @return
+	 */
 	public UnsplashImage getPhoto(String photoID) {
 		String url = UriUtils.addWebPaths(this.baseUrl, "/photos/" + photoID);
+		return getJSON(url, UnsplashImage.class);
+	}
+	
+	public UnsplashImage getPhoto(String photoID, int width, int height, int[] rect) {
+		String url = UriUtils.addWebPaths(this.baseUrl, "/photos/" + photoID);
+		
+		boolean added = false;
+		if(width > 0) {
+			added = true;
+			url = url + "?w=" + width;
+		}
+		
+		if(height > 0) {
+			url = url + (added ? "&" : "?");
+			url = url + "h=" + height;
+			added = true;
+		}
+		
+		if(AssertUtils.isNotEmpty(rect) || rect.length == 4) {
+			url = url + (added ? "&" : "?");
+			url = "rect=" + rect[0] + "," + rect[1] + "," + rect[2] + "," + rect[3];
+		}
+		
 		return getJSON(url, UnsplashImage.class);
 	}
 
