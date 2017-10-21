@@ -10,6 +10,7 @@ import com.sangupta.jerry.util.GsonUtils;
 import com.sangupta.jerry.util.UriUtils;
 import com.sangupta.jerry.util.UrlManipulator;
 import com.sangupta.unsplash.model.UnsplashImage;
+import com.sangupta.unsplash.model.UnsplashPhotoStatistic;
 
 public class UnsplashClient {
 	
@@ -155,6 +156,11 @@ public class UnsplashClient {
 		}
 		
 		return this.getJSON(url, UnsplashImage[].class);
+	}
+	
+	public UnsplashPhotoStatistic getPhotoStatistics(String photoID) {
+		String url = UriUtils.addWebPaths(this.baseUrl, "/photos/" + photoID + "/statistics");
+		return getJSON(url, UnsplashPhotoStatistic.class);
 	}
 
 	/**
