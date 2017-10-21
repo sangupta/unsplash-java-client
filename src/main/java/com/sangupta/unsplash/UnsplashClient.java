@@ -8,6 +8,7 @@ import com.sangupta.jerry.http.service.HttpService;
 import com.sangupta.jerry.util.AssertUtils;
 import com.sangupta.jerry.util.GsonUtils;
 import com.sangupta.jerry.util.UriUtils;
+import com.sangupta.jerry.util.UrlManipulator;
 import com.sangupta.unsplash.model.UnsplashImage;
 
 public class UnsplashClient {
@@ -98,6 +99,62 @@ public class UnsplashClient {
 		}
 		
 		return getJSON(url, UnsplashImage.class);
+	}
+	
+	/**
+	 * Get a random photo
+	 * 
+	 * @return
+	 */
+	public UnsplashImage getRandomPhoto() {
+		String url = UriUtils.addWebPaths(this.baseUrl, "/photos/random");
+		return getJSON(url, UnsplashImage.class);
+	}
+	
+	public UnsplashImage[] getRandomPhoto(String collections, String featured, String username, String query, int width, int height, UnsplashOrientation orientation, int count) {
+		String url = UriUtils.addWebPaths(this.baseUrl, "/photos/random");
+		UrlManipulator manipulator = new UrlManipulator(url);
+		
+		if(AssertUtils.isNotEmpty(collections)) {
+			manipulator.setQueryParam("collections", collections);
+		}
+		
+		if(AssertUtils.isNotEmpty(featured)) {
+			manipulator.setQueryParam("featured", featured);
+		}
+		
+		if(AssertUtils.isNotEmpty(username)) {
+			manipulator.setQueryParam("username", username);
+		}
+		
+		if(AssertUtils.isNotEmpty(query)) {
+			manipulator.setQueryParam("query", query);
+		}
+		
+		if(width > 0) {
+			manipulator.setQueryParam("w", String.valueOf(width));
+		}
+		
+		if(height > 0) {
+			manipulator.setQueryParam("h", String.valueOf(height));
+		}
+		
+		if(orientation != null) {
+			manipulator.setQueryParam("orientation", orientation.toString().toLowerCase());
+		}
+		
+		if(count > 0) {
+			manipulator.setQueryParam("count", String.valueOf(count));
+		}
+		
+		// only if count is specified that we will get an array
+		if(count <= 0) {
+			UnsplashImage image = this.getJSON(url, UnsplashImage.class);
+			
+			return new UnsplashImage[] { image };
+		}
+		
+		return this.getJSON(url, UnsplashImage[].class);
 	}
 
 	/**
