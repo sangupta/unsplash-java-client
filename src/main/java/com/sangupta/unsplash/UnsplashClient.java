@@ -158,6 +158,12 @@ public class UnsplashClient {
 		return this.getJSON(url, UnsplashImage[].class);
 	}
 	
+	/**
+	 * Get a photo's statistics.
+	 * 
+	 * @param photoID
+	 * @return
+	 */
 	public UnsplashPhotoStatistic getPhotoStatistics(String photoID) {
 		String url = UriUtils.addWebPaths(this.baseUrl, "/photos/" + photoID + "/statistics");
 		return getJSON(url, UnsplashPhotoStatistic.class);
