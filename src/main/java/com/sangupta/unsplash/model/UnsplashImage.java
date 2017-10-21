@@ -16,6 +16,8 @@ public class UnsplashImage {
 	
 	public String color;
 	
+	public int downloads;
+	
 	public int likes;
 	
 	public String description;
@@ -24,8 +26,12 @@ public class UnsplashImage {
 	
 	public UnsplashUrls urls;
 	
-	public List<String> categories;
+	public List<UnsplashCategory> categories;
 	
 	public UnsplashLinks links;
+	
+	public UnsplashExif exif;
+	
+	public UnsplashLocation location;
 
 }

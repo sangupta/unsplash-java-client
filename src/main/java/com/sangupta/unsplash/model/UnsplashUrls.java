@@ -11,5 +11,7 @@ public class UnsplashUrls {
 	public String small;
 	
 	public String thumb;
+	
+	public String custom;
 
 }
