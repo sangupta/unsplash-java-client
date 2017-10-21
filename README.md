@@ -2,6 +2,8 @@
 
 A strongly-typed Java client for https://unsplash.com website.
 
+API reference: https://unsplash.com/documentation
+
 ## Usage
 
 ```java
