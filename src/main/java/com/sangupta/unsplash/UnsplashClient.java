@@ -55,7 +55,7 @@ public class UnsplashClient {
 	 * 
 	 * @param clientID the client ID to use. Cannot be <code>null</code>
 	 */
-	UnsplashClient(String clientID) {
+	public UnsplashClient(String clientID) {
 		if(AssertUtils.isEmpty(clientID)) {
 			throw new IllegalArgumentException("ClientID cannot be null/empty");
 		}
@@ -212,6 +212,7 @@ public class UnsplashClient {
 		}
 		
 		String json = response.getContent();
+		System.out.println(json);
 		if(AssertUtils.isEmpty(json)) {
 			return null;
 		}
