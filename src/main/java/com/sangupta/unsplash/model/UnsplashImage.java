@@ -41,6 +41,10 @@ public class UnsplashImage {
 	
 	public int likes;
 	
+	public int views;
+	
+	public boolean likedByUser;
+	
 	public String description;
 	
 	public UnsplashUser user;
